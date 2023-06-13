@@ -10,7 +10,6 @@ const Formulario = () => {
 
     useEffect(() => {
         consultaAPI();
-        console.log("ejecutaUseEffect");
     }, [categoria, pais]);
 
     const consultaAPI = async () => {
@@ -20,8 +19,7 @@ const Formulario = () => {
                 `https://newsdata.io/api/1/news?apikey=pub_24258a6531c5682a2442ca019fbef4b170fd4&q=${categoria || "sport"}&language=es&${pais || "ar"}`
             );
             const datos = await peticion.json();
-            console.log(datos);
-            console.log(datos.results);
+            
             let noticias = datos.results;
             setNoticias(noticias);
         } catch (error) {
@@ -35,13 +33,10 @@ const Formulario = () => {
 
     const handleSelectCategory = (categoria) => {
         const categoriaValue = categoria.target.value;
-        console.log(categoriaValue);
         setCategoria(categoriaValue);
     };
 
     const handleSelectCountry = (country) => {
-        console.log(country.target.value);
-        console.log("Se ejecuta select country");
         const paisValue = country.target.value;
         setPais(paisValue);
     }
